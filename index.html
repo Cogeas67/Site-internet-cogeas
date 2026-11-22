@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[VotreMarque] — l'assurance simple, au juste prix</title>
+<meta name="description" content="Devis en 4 minutes, garanties modulables à la carte, gestion 100 % en ligne. Particuliers et professionnels.">
+<style>
+:root{
+  --primary:#2f4b8f; --primary-dark:#1f356b; --accent:#e8542a; --green:#1e9e6a;
+  --bg:#f6f8fc; --ink:#152036; --muted:#5c6a84; --line:#dfe6f2; --white:#fff;
+  --radius:14px; --shadow:0 6px 24px rgba(21,32,54,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{color:var(--primary);text-decoration:none}
+img{max-width:100%}
+.container{max-width:1120px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:8px;top:8px;background:#fff;padding:8px 16px;z-index:99;border-radius:8px}
+header.site{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav{display:flex;align-items:center;gap:24px;padding:14px 0}
+.logo{font-weight:800;font-size:1.25rem;color:var(--primary);letter-spacing:-.5px}
+.logo span{color:var(--accent)}
+nav.main{display:flex;gap:8px;flex:1}
+nav.main>div{position:relative}
+nav.main a.top{display:block;padding:8px 14px;border-radius:8px;font-weight:600;color:var(--ink);cursor:pointer}
+nav.main>div:hover a.top{background:var(--bg);color:var(--primary)}
+nav.main .drop{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);min-width:230px;padding:8px}
+nav.main>div:hover .drop{display:block}
+.drop a{display:block;padding:8px 12px;border-radius:8px;color:var(--ink);font-size:.95rem}
+.drop a:hover{background:var(--bg);color:var(--primary)}
+.audience{display:flex;background:var(--bg);border-radius:99px;padding:3px;margin-left:auto}
+.audience a{padding:6px 16px;border-radius:99px;font-weight:600;font-size:.9rem;color:var(--muted)}
+.audience a.on{background:var(--primary);color:#fff}
+.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:12px 26px;border-radius:99px;border:0;cursor:pointer;font-size:1rem}
+.btn:hover{background:#c94420}
+.btn.ghost{background:transparent;color:var(--primary);border:2px solid var(--primary);padding:10px 24px}
+.btn.green{background:var(--green)}
+.btn.green:hover{background:#178c5b}
+.hero{background:linear-gradient(120deg,var(--primary-dark),var(--primary) 60%,#4c69b6);color:#fff;padding:72px 0 84px}
+.hero h1{font-size:2.6rem;line-height:1.15;max-width:640px;letter-spacing:-1px}
+.hero .sub{margin:18px 0 28px;font-size:1.15rem;max-width:560px;color:#dbe4f7}
+.hero .pill{display:inline-block;background:rgba(255,255,255,.14);padding:6px 14px;border-radius:99px;font-size:.9rem;margin-bottom:20px}
+.hero ul{list-style:none;margin:20px 0 30px}
+.hero li{padding:4px 0 4px 28px;position:relative}
+.hero li:before{content:"✓";position:absolute;left:0;color:#7fd4ae;font-weight:700}
+section{padding:64px 0}
+section.alt{background:#fff}
+h2.title{font-size:2rem;letter-spacing:-.5px;margin-bottom:8px}
+p.lead{color:var(--muted);margin-bottom:32px;max-width:640px}
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.card h3{margin-bottom:8px;font-size:1.15rem}
+.card p{color:var(--muted);font-size:.95rem;margin-bottom:16px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.actions .btn{padding:9px 18px;font-size:.9rem}
+.actions .link{align-self:center;font-weight:600}
+.stats{background:var(--primary-dark);color:#fff}
+.stats .grid{align-items:center}
+.stat{font-size:2.4rem;font-weight:800;letter-spacing:-1px}
+.stat small{display:block;font-size:.95rem;font-weight:400;color:#c7d3ee}
+table.garanties{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+table.garanties th,table.garanties td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:center;font-size:.95rem}
+table.garanties th:first-child,table.garanties td:first-child{text-align:left;font-weight:600}
+table.garanties thead th{background:var(--primary);color:#fff}
+table.garanties tbody tr:nth-child(even){background:var(--bg)}
+td.yes{color:var(--green);font-weight:700}
+td.no{color:#c3cad6}
+.options{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.options li{background:#fff;border:1px dashed var(--accent);color:var(--accent);border-radius:99px;padding:7px 16px;font-weight:600;font-size:.9rem}
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative}
+.step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;margin-bottom:14px}
+.step h3{font-size:1.05rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.92rem}
+.devis-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);max-width:560px;margin:0 auto;padding:36px}
+.progress{display:flex;gap:8px;margin-bottom:28px}
+.progress i{flex:1;height:6px;background:var(--line);border-radius:99px}
+.progress i.done{background:var(--green)}
+fieldset.frame{border:0;display:none}
+fieldset.frame.on{display:block}
+label{display:block;font-weight:600;margin:16px 0 6px}
+input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--bg)}
+button.navbtn{margin-top:24px;background:var(--primary);color:#fff;border:0;padding:12px 28px;border-radius:99px;font-weight:700;cursor:pointer;font-size:1rem}
+button.navbtn:hover{background:var(--primary-dark)}
+button.navbtn.back{background:transparent;color:var(--primary);margin-right:10px}
+.quote-result{display:none;background:#eef9f3;border:1px solid #bfe8d4;border-radius:12px;padding:24px;margin-top:20px}
+.quote-result strong{font-size:1.8rem;color:var(--green)}
+.reassur{display:flex;gap:18px;justify-content:center;margin-top:20px;color:var(--muted);font-size:.9rem;flex-wrap:wrap}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:10px;box-shadow:var(--shadow)}
+.faq summary{font-weight:700;cursor:pointer}
+.faq p{margin-top:10px;color:var(--muted)}
+.regul{font-size:.8rem;color:var(--muted);max-width:760px;margin-top:28px}
+footer.site{background:#10192e;color:#aab6cf;padding:56px 0 28px;font-size:.92rem}
+footer.site h4{color:#fff;margin-bottom:14px;font-size:1rem}
+footer.site ul{list-style:none}
+footer.site li{margin-bottom:8px}
+footer.site a{color:#aab6cf}
+footer.site a:hover{color:#fff}
+.cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+.foot-bottom{border-top:1px solid #263553;margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:900px){
+  .g3,.g4,.steps,.cols{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+}
+@media(max-width:600px){
+  .g3,.g4,.steps,.cols{grid-template-columns:1fr}
+  .hero h1{font-size:2rem}
+}
+.page{display:none}.page.on{display:block}
+</style></head><body>
+<a class="skip" href="#main">Aller au contenu principal</a>
+<header class="site"><div class="container nav">
+  <a class="logo" href="#/accueil" data-go="accueil">[VotreMarque]<span>.</span></a>
+  <nav class="main" aria-label="Navigation principale">
+    <div><a class="top" href="#/particuliers/index" data-go="particuliers/index">Santé</a>
+      <div class="drop">
+        <a href="#/particuliers/sante" data-go="particuliers/sante">Mutuelle santé</a>
+        <a href="#/particuliers/prevoyance" data-go="particuliers/prevoyance">Prévoyance</a>
+        <a href="#/particuliers/emprunteur" data-go="particuliers/emprunteur">Assurance emprunteur</a>
+        <a href="#/particuliers/epargne" data-go="particuliers/epargne">Épargne &amp; retraite</a>
+      </div></div>
+    <div><a class="top" href="#/particuliers/auto" data-go="particuliers/auto">Auto &amp; Habitation</a>
+      <div class="drop">
+        <a href="#/particuliers/auto" data-go="particuliers/auto">Assurance auto</a>
+        <a href="#/particuliers/habitation" data-go="particuliers/habitation">Assurance habitation</a>
+      </div></div>
+    <div><a class="top" href="#/pros/index" data-go="pros/index">Professionnels</a>
+      <div class="drop">
+        <a href="#/pros/rcp" data-go="pros/rcp">Responsabilité civile pro</a>
+        <a href="#/pros/decennale" data-go="pros/decennale">Assurance décennale (bâtiment)</a>
+        <a href="#/pros/multirisque-pro" data-go="pros/multirisque-pro">Multirisque professionnelle</a>
+        <a href="#/pros/sante-collective" data-go="pros/sante-collective">Santé collective</a>
+        <a href="#/pros/epargne-retraite" data-go="pros/epargne-retraite">Épargne &amp; retraite pro</a>
+      </div></div>
+  </nav>
+  <div class="audience" role="tablist" aria-label="Choisir mon profil">
+    <a href="#/particuliers/index" data-go="particuliers/index" class="on">Particuliers</a>
+    <a href="#/pros/index" data-go="pros/index">Pros</a>
+  </div>
+  <a class="btn" href="#/devis" data-go="devis">Devis en 4 min</a>
+</div></header>
+<main id="main">
+<section class="page on" data-page="accueil">
+
+<section class="hero"><div class="container">
+  <span class="pill">Particuliers &amp; professionnels</span>
+  <h1>L'assurance simple, au juste prix.</h1>
+  <p class="sub">Devis en 4 minutes. Garanties modulables à la carte. Résiliation de votre ancien contrat : on s'en charge.</p>
+  <a class="btn" href="#/devis" data-go="devis">Obtenir mon tarif</a>
+  <ul>
+    <li>App mobile : remboursements suivis en temps réel, attestations en un clic</li>
+    <li>Tarif affiché avant de créer un compte, sans engagement</li>
+    <li>Garanties à la carte : vous cochez, la formule se construit</li>
+  </ul>
+</div></section>
+
+<section class="alt"><div class="container">
+  <h2 class="title">Nos garanties, présentées clairement</h2>
+  <p class="lead">Une carte = un besoin. Deux clics maximum entre l'accueil et votre devis.</p>
+  <div class="grid g4">
+    <div class="card"><h3>Mutuelle santé</h3><p>Vous seul, en couple ou en famille. Soins courants, optique, dentaire, audition, hospitalisation.</p>
+      <div class="actions"><a class="btn" href="#/particuliers/sante" data-go="particuliers/sante">Obtenir un tarif</a><a class="link" href="#/particuliers/sante" data-go="particuliers/sante">En savoir plus</a></div></div>
+    <div class="card"><h3>Prévoyance</h3><p>Arrêt de travail, invalidité, décès : maintien de revenus et protection de vos proches.</p>
+      <div class="actions"><a class="btn" href="#/particuliers/prevoyance" data-go="particuliers/prevoyance">Obtenir un tarif</a><a class="link" href="#/particuliers/prevoyance" data-go="particuliers/prevoyance">En savoir plus</a></div></div>
+    <div class="card"><h3>Auto &amp; 2 roues</h3><p>Jeune permis, bonus, malus, résilié : des formules lisibles de l'au tiers au tous risques.</p>
+      <div class="actions"><a class="btn" href="#/particuliers/auto" data-go="particuliers/auto">Devis immédiat</a><a class="link" href="#/particuliers/auto" data-go="particuliers/auto">En savoir plus</a></div></div>
+    <div class="card"><h3>Habitation</h3><p>Locataire, propriétaire, colocation : protection des murs, des biens et de votre responsabilité.</p>
+      <div class="actions"><a class="btn" href="#/particuliers/habitation" data-go="particuliers/habitation">Devis immédiat</a><a class="link" href="#/particuliers/habitation" data-go="particuliers/habitation">En savoir plus</a></div></div>
+    <div class="card"><h3>Emprunteur</h3><p>Résidence principale ou investissement locatif. Vous changez d'assurance de prêt : jusqu'à [X] % d'économie.</p>
+      <div class="actions"><a class="btn" href="#/particuliers/emprunteur" data-go="particuliers/emprunteur">Simuler</a><a class="link" href="#/particuliers/emprunteur" data-go="particuliers/emprunteur">En savoir plus</a></div></div>
+    <div class="card"><h3>Épargne &amp; retraite</h3><p>Assurance vie, PER : préparer un projet, compléter vos revenus, transmettre.</p>
+      <div class="actions"><a class="btn ghost" href="#/particuliers/epargne" data-go="particuliers/epargne">Simuler</a><a class="link" href="#/particuliers/epargne" data-go="particuliers/epargne">En savoir plus</a></div></div>
+    <div class="card pro" style="border-color:var(--primary)"><h3>RCP professionnelle</h3><p>Libéral, hospitalier, cabinet, maison de santé : votre responsabilité civile couverte 24/7.</p>
+      <div class="actions"><a class="btn" href="#/pros/rcp" data-go="pros/rcp">Obtenir un tarif</a><a class="link" href="#/pros/rcp" data-go="pros/rcp">En savoir plus</a></div></div>
+    <div class="card pro" style="border-color:var(--primary)"><h3>Pro : cabinet &amp; local</h3><p>Multirisque professionnelle : local, matériel, cyber, pertes d'exploitation.</p>
+      <div class="actions"><a class="btn" href="#/pros/multirisque-pro" data-go="pros/multirisque-pro">Obtenir un tarif</a><a class="link" href="#/pros/multirisque-pro" data-go="pros/multirisque-pro">En savoir plus</a></div></div>
+    <div class="card pro" style="border-color:var(--primary)"><h3>Décennale (bâtiment)</h3><p>Artisans et entreprises : RC décennale obligatoire, attestation immédiate.</p>
+      <div class="actions"><a class="btn" href="#/pros/decennale" data-go="pros/decennale">Obtenir un tarif</a><a class="link" href="#/pros/decennale" data-go="pros/decennale">En savoir plus</a></div></div>
+  </div>
+</div></section>
+
+<section class="stats"><div class="container grid g4">
+  <div><div class="stat">[X] %</div><small>de clients satisfaits — [plateforme indépendante]</small></div>
+  <div><div class="stat">[N]</div><small>assurés nous font confiance</small></div>
+  <div><div class="stat">4 min</div><small>pour obtenir votre devis, sans engagement</small></div>
+  <div><div class="stat">100 %</div><small>de la gestion en ligne, sur mobile comme sur ordinateur</small></div>
+</div></section>
+
+<section class="alt"><div class="container">
+  <h2 class="title">Pour chaque profil, la bonne porte d'entrée</h2>
+  <p class="lead">Choisissez votre situation : la suite du site s'y adapte.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Étudiants &amp; jeunes actifs</h3><p>Santé étudiante, habitation, auto malin, premiers emprunts.</p><div class="actions"><a class="btn ghost" href="#/particuliers/index" data-go="particuliers/index">Voir les offres</a></div></div>
+    <div class="card"><h3>Familles &amp; actifs</h3><p>Santé personnalisable, prévoyance, tous vos véhicules et logements.</p><div class="actions"><a class="btn ghost" href="#/particuliers/index" data-go="particuliers/index">Voir les offres</a></div></div>
+    <div class="card"><h3>Indépendants &amp; praticiens</h3><p>RCP, multirisque, santé collective, retraite : l'essentiel de votre activité.</p><div class="actions"><a class="btn ghost" href="#/pros/index" data-go="pros/index">Voir l'espace pros</a></div></div>
+  </div>
+</div></section>
+
+<section><div class="container">
+  <h2 class="title">Tout savoir : les guides</h2>
+  <p class="lead">Les réponses claires, sans jargon de police.</p>
+  <div class="grid g4">
+    <div class="card"><h3>Changer de mutuelle</h3><p>Résiliation à tout moment après un an : la marche à suivre, étape par étape.</p><a class="link" href="#">Lire le guide</a></div>
+    <div class="card"><h3>Changer d'assurance emprunteur</h3><p>Équivalence de garanties : le guide 2026.</p><a class="link" href="#">Lire le guide</a></div>
+    <div class="card"><h3>Résilier son auto</h3><p>Les cas qui permettent de partir, et comment sécuriser la transition.</p><a class="link" href="#">Lire le guide</a></div>
+    <div class="card"><h3>Déclarer un sinistre</h3><p>Que faire, dans quel délai, avec quels documents.</p><a class="link" href="#">Lire le guide</a></div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="container">
+  <h2 class="title">Votre gestion, au doigt et à l'œil</h2>
+  <p class="lead">Depuis l'app mobile :</p>
+  <ul class="options">
+    <li>Envoyer une facture de soins</li><li>Suivre un remboursement</li><li>Télécharger une attestation</li>
+    <li>Déclarer un sinistre en photos</li><li>Ajuster vos garanties</li><li>Joindre un conseiller</li>
+  </ul>
+</div></section>
+
+</section>
+<section class="page" data-page="devis">
+
+<section><div class="container">
+  <h2 class="title">Votre devis en 4 étapes</h2>
+  <p class="lead">Tarif affiché à la fin — sans compte, sans engagement.</p>
+  <div class="devis-panel">
+    <div class="progress"><i class="done"></i><i></i><i></i><i></i></div>
+    <form id="devisForm" onsubmit="return false">
+      <fieldset class="frame on">
+        <legend><strong>1. Votre profil</strong></legend>
+        <label for="d1-age">Votre âge à la souscription</label><input id="d1-age" type="number" min="18" placeholder="35">
+        <label for="d1-sit">Situation</label>
+        <select id="d1-sit"><option>Particulier</option><option>Indépendant / TNS</option><option>Salarié / hospitalier</option><option>Artisan / entreprise du bâtiment</option></select>
+        <label for="d1-cp">Code postal</label><input id="d1-cp" type="text" placeholder="75011">
+        <button type="button" class="navbtn" onclick="nextStep(0)">Continuer</button>
+      </fieldset>
+      <fieldset class="frame">
+        <legend><strong>2. Votre besoin</strong></legend>
+        <label for="d2-prod">Ce que je souhaite assurer</label>
+        <select id="d2-prod"><option>Santé</option><option>Auto</option><option>Habitation</option><option>Moto / 2 roues</option><option>Emprunteur</option><option>Multirisque professionnelle</option><option>Assurance décennale (bâtiment)</option></select>
+        <label for="d2-det">Détail (véhicule, surface, prêt…)</label><input id="d2-det" type="text" placeholder="Ex : citadine 2020, 60 m², prêt de 250 000 €">
+        <button type="button" class="navbtn back" onclick="prevStep(1)">Retour</button>
+        <button type="button" class="navbtn" onclick="nextStep(1)">Continuer</button>
+      </fieldset>
+      <fieldset class="frame">
+        <legend><strong>3. Vos garanties</strong></legend>
+        <label for="d3-form">Niveau souhaité</label>
+        <select id="d3-form"><option>Essentielle</option><option>Confort</option><option>Premium / Tous risques</option></select>
+        <label for="d3-opt">Options à ajouter</label>
+        <select id="d3-opt"><option>Aucune</option><option>Assistance 0 km</option><option>Franchise zéro</option><option>Valeur à neuf</option><option>Médecines douces</option></select>
+        <button type="button" class="navbtn back" onclick="prevStep(2)">Retour</button>
+        <button type="button" class="navbtn" onclick="nextStep(2)">Voir mon tarif</button>
+      </fieldset>
+      <fieldset class="frame" data-done="[XX] €/mois">
+        <legend><strong>4. Votre tarif</strong></legend>
+        <div class="quote-result">
+          Votre tarif estimé : <strong id="quote-amount">[XX] €/mois</strong><br>
+          <span style="color:var(--muted)">Formule Confort, votre profil — estimation à ajuster selon vos coordonnées.</span>
+        </div>
+        <label for="d4-mail">Recevez-le par e-mail</label><input id="d4-mail" type="email" placeholder="prenom@exemple.fr">
+        <button type="button" class="navbtn back" onclick="prevStep(3)">Retour</button>
+        <button type="button" class="navbtn green">Envoyer mon devis</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="reassur"><span>✔ Devis gratuit</span><span>✔ Sans engagement</span><span>✔ Données protégées (RGPD)</span></div>
+</div></section>
+
+</section>
+<section class="page" data-page="particuliers/index">
+
+<section class="hero"><div class="container">
+  <span class="pill">Espace particuliers</span>
+  <h1>Vos assurances, vues comme vous vivez.</h1>
+  <p class="sub">Santé pour vous et les vôtres, auto, habitation, et la protection financière si un coup dur arrive.</p>
+  <a class="btn" href="#/devis" data-go="devis">Obtenir mon tarif</a>
+</div></section>
+<section><div class="container">
+  <h2 class="title">Santé : garanties visibles, options à cocher</h2>
+  <p class="lead">Vous choisissez le niveau par poste de dépense. Le tarif s'affiche immédiatement.</p>
+  <a class="btn" href="#/particuliers/sante" data-go="particuliers/sante">Découvrir la mutuelle santé</a>
+</div></section>
+
+</section>
+<section class="page" data-page="particuliers/sante">
+
+<h2 class="title">Mutuelle santé — vous cochez, la formule se construit</h2>
+<p class="lead">Déclinaison par profil : étudiant, actif, famille, TNS, senior.</p>
+<table class="garanties"><thead><tr><th>Garantie</th><th>Essentielle</th><th>Confort</th><th>Premium</th></tr></thead><tbody>
+<tr><td>Soins courants (consultations, analyses)</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Hospitalisation (frais de séjour, chambre)</td><td class="no">—</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Chambre particulière &amp; dépassements</td><td class="no">—</td><td class="no">Partiel</td><td class="yes">✔</td></tr>
+<tr><td>Optique (lunettes, lentilles)</td><td class="yes">Forfait</td><td class="yes">Renforcé</td><td class="yes">Renforcé</td></tr>
+<tr><td>Dentaire (prothèses, orthodontie)</td><td class="yes">Forfait</td><td class="yes">Renforcé</td><td class="yes">Renforcé</td></tr>
+<tr><td>Audition (aides auditives, 100 % Santé)</td><td class="no">—</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+</tbody></table>
+<p style="margin-top:24px" class="lead">Options à la carte :</p>
+<ul class="options"><li>Médecines douces</li><li>Cure thermale</li><li>Arrêt de travail</li><li>Prévention</li></ul>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Mon tarif santé en 3 minutes</a></div>
+
+<div class="faq"><div class="container" style="max-width:760px">
+  <h2 class="title">Questions fréquentes</h2>
+  <details><summary>Quand ma garantie prend-elle effet ?</summary><p>À la date d'effet choisie, généralement immédiatement après validation et paiement de la première cotisation. Certaines prestations (ex. arrêt de travail) comportent un délai de carence : il est affiché avant la signature.</p></details>
+  <details><summary>Puis-je ajouter mon conjoint et mes enfants ?</summary><p>Oui, à tout moment, avec un tarif famille selon vos cas.</p></details>
+  <details><summary>Comment changer de mutuelle en cours d'année ?</summary><p>Résiliation possible à tout moment après la première année (résiliation infra-annuelle), ou immédiatement en cas de déménagement, mariage ou changement de situation. On se charge de la résiliation de l'ancien contrat.</p></details>
+  <details><summary>Quels justificatifs pour un remboursement ?</summary><p>La déclaration de Sécurité sociale transmet automatiquement vos droits en tiers payant ; sinon, la facture acquittée suffit — envoyez-la depuis l'application.</p></details>
+</div></div>
+</section>
+<section class="page" data-page="particuliers/prevoyance">
+
+<h2 class="title">Prévoyance — vous cochez le risque, pas le reste</h2>
+<p class="lead">Les garanties qui déclenchent une protection financière quand la vie déraille.</p>
+<table class="garanties"><thead><tr><th>Couverture</th><th>Ce que vous recevez</th></tr></thead><tbody>
+<tr><td>Arrêt de travail</td><td style="text-align:left">Indemnité journalière pour maintenir vos revenus</td></tr>
+<tr><td>Invalidité</td><td style="text-align:left">Rente ou capital selon le taux d'invalidité</td></tr>
+<tr><td>Décès</td><td style="text-align:left">Capital versé aux bénéficiaires désignés</td></tr>
+<tr><td>Rente éducation</td><td style="text-align:left">Rente jusqu'à la fin des études de vos enfants</td></tr>
+<tr><td>Assurance obsèques</td><td style="text-align:left">Capital dédié, organisation à votre convenance</td></tr>
+<tr><td>Accidents de la vie (GAV)</td><td style="text-align:left">Dommages corporels graves non couverts autrement</td></tr>
+</tbody></table>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Composer ma prévoyance</a></div>
+
+</section>
+<section class="page" data-page="particuliers/auto">
+
+<h2 class="title">Assurance auto — 3 formules qui restent lisibles</h2>
+<p class="lead">Bonus, malus, jeune permis, résilié, usage professionnel : tout le monde trouve sa couverture.</p>
+<table class="garanties"><thead><tr><th>Garantie</th><th>Au tiers</th><th>Tiers +</th><th>Tous risques</th></tr></thead><tbody>
+<tr><td>Responsabilité civile (obligatoire)</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Assistance 0 km</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Vol / incendie</td><td class="no">—</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Bris de glace</td><td class="no">—</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Catastrophes naturelles / technologiques</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Dommages tous accidents</td><td class="no">—</td><td class="no">—</td><td class="yes">✔</td></tr>
+<tr><td>Véhicule de remplacement</td><td class="no">Option</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+</tbody></table>
+<p style="margin-top:24px" class="lead">Options à la carte :</p>
+<ul class="options"><li>Franchise zéro</li><li>Valeur à neuf</li><li>Objets embarqués</li><li>Conducteur étendu</li></ul>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Devis auto immédiat</a></div>
+
+</section>
+<section class="page" data-page="particuliers/habitation">
+
+<h2 class="title">Assurance habitation — du studio au pavillon</h2>
+<p class="lead">Locataire, propriétaire, colocation, résidence secondaire.</p>
+<table class="garanties"><thead><tr><th>Garantie</th><th>Éco</th><th>Éco+</th><th>Zen</th><th>Confort</th></tr></thead><tbody>
+<tr><td>Incendie, explosion</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Dégâts des eaux</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Vol et vandalisme</td><td class="no">Option</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Bris de glace (dont véranda)</td><td class="no">—</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Catastrophes naturelles / technologiques</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Responsabilité civile vie privée</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+<tr><td>Assistance 24/7 (serrurier, hébergement, aide à domicile)</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td><td class="yes">✔</td></tr>
+</tbody></table>
+<p style="margin-top:24px" class="lead">Options à la carte :</p>
+<ul class="options"><li>Piscine</li><li>Panneaux solaires</li><li>Objets de valeur</li><li>Dépendances</li><li>Rééquipement à neuf</li></ul>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Devis habitation en 4 minutes</a></div>
+
+</section>
+<section class="page" data-page="particuliers/emprunteur">
+
+<h2 class="title">Assurance emprunteur — pour chaque projet de prêt</h2>
+<p class="lead">Résidence principale, résidence secondaire, investissement locatif, gros capitaux, profils spécifiques (fonctionnaires, cadres, indépendants, professions médicales).</p>
+<table class="garanties"><thead><tr><th>Garantie</th><th>Ce que cela couvre</th></tr></thead><tbody>
+<tr><td>Décès</td><td style="text-align:left">Capital remboursé à la banque, protège les héritiers</td></tr>
+<tr><td>PTIA</td><td style="text-align:left">Perte totale et irréversible d'autonomie — capital versé</td></tr>
+<tr><td>ITT / IPT</td><td style="text-align:left">Prise en charge des échéances pendant l'incapacité</td></tr>
+<tr><td>Invalidité permanente</td><td style="text-align:left">Prise en charge selon taux d'invalidité</td></tr>
+</tbody></table>
+<div style="margin-top:24px">
+<p><strong>À savoir :</strong> depuis la loi Lemoine (2022), vous pouvez changer d'assurance de prêt à tout moment, avec un niveau de garanties équivalent. On s'occupe de la résiliation de l'ancien contrat — jusqu'à <strong>[X] % d'économie</strong> possible.</p></div>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Simuler mon assurance de prêt</a></div>
+
+</section>
+<section class="page" data-page="particuliers/epargne">
+
+<h2 class="title">Épargne &amp; retraite — selon votre projet</h2>
+<p class="lead">Les bons supports, la bonne fiscalité, les bons moments.</p>
+<table class="garanties"><thead><tr><th>Produit</th><th>Pour quoi</th></tr></thead><tbody>
+<tr><td>Assurance vie</td><td style="text-align:left">Projets, transmission, complément de revenus — capital disponible à tout moment</td></tr>
+<tr><td>Plan d'épargne retraite (PER)</td><td style="text-align:left">Préparer la retraite et réduire la fiscalité pendant l'activité</td></tr>
+<tr><td>Contrat de capitalisation</td><td style="text-align:left">Valoriser une trésorerie ou un capital à long terme</td></tr>
+<tr><td>Investissement immobilier</td><td style="text-align:left">SCPI et supports immobiliers pour diversifier</td></tr>
+</tbody></table>
+<div style="margin-top:24px">
+<p>Simulateurs inclus : <strong>épargne</strong>, <strong>retraite</strong>, <strong>succession</strong> — vous projetez vos revenus futurs avant d'engager.</p></div>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Ouvrir un simulateur</a></div>
+
+</section>
+<section class="page" data-page="pros/index">
+
+<section class="hero"><div class="container">
+  <span class="pill">Espace professionnels</span>
+  <h1>Votre activité, assurée de bout en bout.</h1>
+  <p class="sub">Responsabilité civile, local professionnel, santé collective, épargne et retraite — la couverture qui colle à votre métier.</p>
+  <a class="btn" href="#/devis" data-go="devis">Obtenir un tarif pro</a>
+</div></section>
+<section><div class="container">
+  <h2 class="title">Les garanties par besoin de votre activité</h2>
+  <div class="grid g4">
+    <div class="card"><h3>RCP &amp; protection juridique</h3><p>Personnes physiques et morales, cabinet, maisons de santé, associations, CPTS.</p>
+      <div class="actions"><a class="btn" href="#/pros/rcp" data-go="pros/rcp">Obtenir un tarif</a></div></div>
+    <div class="card"><h3>Multirisque professionnelle</h3><p>Local, matériel, cyber-risques, pertes d'exploitation.</p>
+      <div class="actions"><a class="btn" href="#/pros/multirisque-pro" data-go="pros/multirisque-pro">Obtenir un tarif</a></div></div>
+    <div class="card"><h3>Santé collective</h3><p>Vos collaborateurs couverts, gestion en ligne, tiers payant.</p>
+      <div class="actions"><a class="btn" href="#/pros/sante-collective" data-go="pros/sante-collective">Faire une demande</a></div></div>
+    <div class="card"><h3>Épargne &amp; retraite pro</h3><p>PER individuel et obligatoire, épargne salariale, Madelin.</p>
+      <div class="actions"><a class="btn" href="#/pros/epargne-retraite" data-go="pros/epargne-retraite">Simuler</a></div></div>
+    <div class="card"><h3>Décennale (bâtiment)</h3><p>Artisans et entreprises : RC décennale obligatoire, attestation immédiate.</p>
+      <div class="actions"><a class="btn" href="#/pros/decennale" data-go="pros/decennale">Obtenir une attestation</a></div></div>
+  </div>
+</div></section>
+
+</section>
+<section class="page" data-page="pros/rcp">
+
+<h2 class="title">RCP — par statut de votre activité</h2>
+<p class="lead">Une couverture qui colle à votre responsabilité, où que vous exerciez.</p>
+<table class="garanties"><thead><tr><th>Garantie</th><th>Ce que cela couvre</th></tr></thead><tbody>
+<tr><td>RC exploitation</td><td style="text-align:left">Dommages causés aux tiers dans le cadre de l'activité (locaux, matériel, accès)</td></tr>
+<tr><td>RC professionnelle</td><td style="text-align:left">Fautes techniques, erreurs, omissions dans la prestation</td></tr>
+<tr><td>Défense pénale &amp; recours</td><td style="text-align:left">Frais de défense en cas de procédure</td></tr>
+<tr><td>Protection juridique</td><td style="text-align:left">Litiges contrats, droit du travail, locatif</td></tr>
+<tr><td>Assistance 24/7</td><td style="text-align:left">Ligne d'urgence pour la prise en charge immédiate d'un sinistre</td></tr>
+</tbody></table>
+<p style="margin-top:24px" class="lead">Déclinaisons par situation :</p>
+<ul class="options"><li>Libéral</li><li>Salarié / hospitalier</li><li>Cabinet de groupe</li><li>Maison de santé</li><li>Association</li><li>CPTS</li><li>Dirigeant</li></ul>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Tarif RCP en quelques minutes</a></div>
+
+</section>
+<section class="page" data-page="pros/decennale">
+
+<section class="hero"><div class="container">
+  <span class="pill">Bâtiment &amp; construction</span>
+  <h1>Assurance décennale, obligatoire et enfin claire.</h1>
+  <p class="sub">Artisan, entreprise générale, installateur : votre responsabilité décennale couverte, avec l'attestation délivrée immédiatement.</p>
+  <a class="btn" href="#/devis" data-go="devis">Devis décennale en 4 minutes</a>
+</div></section>
+<section class="alt"><div class="container">
+  <h2 class="title">Les garanties, chantier par chantier</h2>
+  <p class="lead">La décennale composée comme une liste de courses.</p>
+  <table class="garanties"><thead><tr><th>Garantie</th><th>Durée</th><th>Ce que cela couvre</th></tr></thead><tbody>
+  <tr><td>Responsabilité civile décennale <em>(obligatoire — loi Spinetta)</em></td><td>10 ans</td><td style="text-align:left">Dommages compromettant la solidité de l'ouvrage ou le rendant impropre à sa destination</td></tr>
+  <tr><td>Garantie de parfait achèvement</td><td>1 an</td><td style="text-align:left">Réparation de tous les défauts signalés la première année</td></tr>
+  <tr><td>Bonne fonctionnement / biennale</td><td>2 ans</td><td style="text-align:left">Dysfonctionnement des équipements dissociables de l'ouvrage</td></tr>
+  <tr><td>RC chantier</td><td>Pendant les travaux</td><td style="text-align:left">Dommages causés aux tiers pendant les travaux (voisin, passants, existant)</td></tr>
+  <tr><td>Dommages-ouvrage (maîtres d'ouvrage)</td><td>10 ans</td><td style="text-align:left">Préfinancement des réparations sans attendre les recherches de responsabilité</td></tr>
+  </tbody></table>
+  <p style="margin-top:24px" class="lead">Options à la carte :</p>
+  <ul class="options"><li>Pertes d'exploitation chantier</li><li>Bris de machines</li><li>Protection juridique chantier</li><li>Retard de livraison</li><li>Travaux sur existant étendus</li></ul>
+  <p style="margin-top:24px" class="lead">Tous corps de métier :</p>
+  <ul class="options"><li>Gros œuvre</li><li>Maçonnerie</li><li>Électricité</li><li>Plomberie</li><li>Menuiserie</li><li>Peinture</li><li>Carrelage</li><li>Couverture</li><li>Promoteur / lotisseur</li><li>Étanchéité</li></ul>
+  <div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Obtenir mon attestation décennale</a></div>
+  <div class="faq"><h2 class="title">Questions fréquentes</h2>
+  <details><summary>L'attestation peut-elle être immédiate ?</summary><p>Oui : devis validé, paiement effectué, votre attestation décennale est disponible immédiatement dans votre espace client — exigée par les maîtres d'ouvrage avant l'ouverture du chantier.</p></details>
+  <details><summary>Décennale et RC pro : la même chose ?</summary><p>Non. La RC pro couvre votre activité courante ; la décennale couvre les dommages à l'ouvrage après réception. Les deux sont le plus souvent souscrites ensemble.</p></details>
+  <details><summary>Et si j'ai été résilié par un autre assureur ?</summary><p>Un profil résilié reste assurable : le tarif est ajusté, non la couverture obligatoire.</p></details>
+  </div>
+  <p class="regul">* La garantie décennale est une obligation légale pour les professionnels du bâtiment (loi Spinetta, art. 1792 du Code civil). Conditions, exclusions et plafonds détaillés dans les conditions générales.</p>
+</div></section>
+
+</section>
+<section class="page" data-page="pros/multirisque-pro">
+
+<h2 class="title">Multirisque professionnelle — local, matériel, cyber</h2>
+<p class="lead">Les garanties qui protègent l'économie de votre activité.</p>
+<table class="garanties"><thead><tr><th>Garantie</th><th>Ce que cela couvre</th></tr></thead><tbody>
+<tr><td>Local professionnel</td><td style="text-align:left">Incendie, explosion, dégâts des eaux, événements climatiques</td></tr>
+<tr><td>Matériel &amp; mobilier</td><td style="text-align:left">Valeurs d'usage, équipements techniques, stocks et marchandises</td></tr>
+<tr><td>Vol et vandalisme</td><td style="text-align:left">Mobilier, marchandises, matériels biomédicaux ou techniques</td></tr>
+<tr><td>Bris de machines / panne</td><td style="text-align:left">Réparation ou remplacement du matériel endommagé</td></tr>
+<tr><td>Pertes d'exploitation</td><td style="text-align:left">Perte de marge suite à l'arrêt du local ou du matériel</td></tr>
+<tr><td>RC exploitation &amp; pro</td><td style="text-align:left">Dommages causés aux clients et aux tiers</td></tr>
+</tbody></table>
+<p style="margin-top:24px" class="lead">Options à la carte :</p>
+<ul class="options"><li>Cyber-risques</li><li>Marchandises en livraison</li><li>Flotte de véhicules</li><li>Objets de valeur</li></ul>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Devis multirisque pro</a></div>
+
+</section>
+<section class="page" data-page="pros/sante-collective">
+
+<h2 class="title">Santé collective — vos collaborateurs bien couverts</h2>
+<p class="lead">Cabinets, cliniques, PME : une mutuelle collective conforme, avec la gestion la plus simple possible.</p>
+<table class="garanties"><thead><tr><th>Caractéristique</th><th>Détail</th></tr></thead><tbody>
+<tr><td>Couverture</td><td style="text-align:left">Même socle que la santé individuelle, décliné par formule</td></tr>
+<tr><td>Conformité</td><td style="text-align:left">Panier de soins minimum obligatoire respecté</td></tr>
+<tr><td>Tiers payant</td><td style="text-align:left">Carte de tiers payant pour chaque salarié</td></tr>
+<tr><td>Gestion en ligne</td><td style="text-align:left">Espace employeur : affiliations, avenants, facturation</td></tr>
+<tr><td>Accueil salariés</td><td style="text-align:left">Espace assuré individuel, app mobile, remboursements traçables</td></tr>
+</tbody></table>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Demander une proposition collective</a></div>
+
+</section>
+<section class="page" data-page="pros/epargne-retraite">
+
+<h2 class="title">Épargne &amp; retraite — selon votre statut</h2>
+<p class="lead">Indépendants, dirigeants, entreprises : complément de revenus et avantage fiscal.</p>
+<table class="garanties"><thead><tr><th>Produit</th><th>Pour qui / pour quoi</th></tr></thead><tbody>
+<tr><td>PER individuel (Madelin)</td><td style="text-align:left">TNS : versements déductibles, complément de retraite</td></tr>
+<tr><td>PER obligatoire (art. 83)</td><td style="text-align:left">Mise en place par l'employeur pour les salariés</td></tr>
+<tr><td>Épargne salariale (PEI / PERCO)</td><td style="text-align:left">Participation, intéressement, abondement — gestion en ligne</td></tr>
+<tr><td>Assurance vie dirigeant</td><td style="text-align:left">Valorisation, transmission, patrimoine personnel</td></tr>
+</tbody></table>
+<div style="margin-top:24px">
+<p>Simulateurs inclus : <strong>épargne</strong>, <strong>retraite</strong>, <strong>succession</strong> — projection de vos revenus futurs avant de vous engager.</p></div>
+<div style="margin:32px 0"><a class="btn" href="#/devis" data-go="devis">Simuler ma retraite</a></div>
+
+</section>
+</main>
+<footer class="site"><div class="container">
+  <div class="cols">
+    <div><h4>[VotreMarque]</h4><p>Devis en 4 minutes, garanties modulables à la carte.<br>Assurance 100 % en ligne.</p></div>
+    <div><h4>Particuliers</h4><ul>
+      <li><a href="#/particuliers/sante" data-go="particuliers/sante">Mutuelle santé</a></li>
+      <li><a href="#/particuliers/prevoyance" data-go="particuliers/prevoyance">Prévoyance</a></li>
+      <li><a href="#/particuliers/auto" data-go="particuliers/auto">Auto</a></li>
+      <li><a href="#/particuliers/habitation" data-go="particuliers/habitation">Habitation</a></li>
+      <li><a href="#/particuliers/emprunteur" data-go="particuliers/emprunteur">Emprunteur</a></li>
+      <li><a href="#/particuliers/epargne" data-go="particuliers/epargne">Épargne &amp; retraite</a></li></ul></div>
+    <div><h4>Professionnels</h4><ul>
+      <li><a href="#/pros/rcp" data-go="pros/rcp">RCP &amp; protection juridique</a></li>
+      <li><a href="#/pros/decennale" data-go="pros/decennale">Assurance décennale</a></li>
+      <li><a href="#/pros/multirisque-pro" data-go="pros/multirisque-pro">Multirisque pro</a></li>
+      <li><a href="#/pros/sante-collective" data-go="pros/sante-collective">Santé collective</a></li>
+      <li><a href="#/pros/epargne-retraite" data-go="pros/epargne-retraite">Épargne &amp; retraite</a></li></ul></div>
+    <div><h4>Services</h4><ul>
+      <li><a href="#/devis" data-go="devis">Devis en 4 minutes</a></li>
+      <li><a href="#/accueil" data-go="accueil">Accueil</a></li>
+      <li><a href="#">Déclarer un sinistre</a></li>
+      <li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="foot-bottom"><span>© [VotreMarque] — maquette de démonstration</span>
+  <span><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></span></div>
+</div></footer>
+<script>
+
+function setStep(n){
+  document.querySelectorAll('.frame').forEach((f,i)=>f.classList.toggle('on',i===n));
+  const dots=document.querySelectorAll('.progress i');
+  dots.forEach((d,i)=>d.classList.toggle('done',i<=n));
+  if(document.querySelectorAll('.frame')[n].dataset.done){
+    const r=document.querySelector('.quote-result');
+    r.style.display='block';
+    document.getElementById('quote-amount').textContent=document.querySelectorAll('.frame')[n].dataset.done;
+  }
+}
+function nextStep(n){setStep(n+1)}
+function prevStep(n){setStep(n-1)}
+
+document.addEventListener("click", function(e){
+  var a = e.target.closest("a[data-go]");
+  if(!a) return;
+  e.preventDefault();
+  var id = a.dataset.go;
+  document.querySelectorAll(".page").forEach(function(p){ p.classList.toggle("on", p.dataset.page === id); });
+  window.scrollTo(0,0);
+});
+</script></body></html>
